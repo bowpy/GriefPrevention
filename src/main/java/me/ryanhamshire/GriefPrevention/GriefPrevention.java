@@ -75,9 +75,6 @@ import java.util.stream.Collectors;
 
 public class GriefPrevention extends JavaPlugin
 {
-
-    public static String BEDROCK_PREFIX = ".";
-
     //for convenience, a reference to the instance of this plugin
     public static GriefPrevention instance;
 
@@ -1560,7 +1557,7 @@ public class GriefPrevention extends JavaPlugin
                     if (!clearPermissions && otherPlayer == null && !args[0].equals("public"))
                     {
                         //bracket any permissions - at this point it must be a permission without brackets
-                        if (!args[0].startsWith(GriefPrevention.BEDROCK_PREFIX) && args[0].contains("."))
+                        if (args[0].contains("."))
                         {
                             args[0] = "[" + args[0] + "]";
                         }
@@ -2965,7 +2962,7 @@ public class GriefPrevention extends JavaPlugin
         else
         {
             otherPlayer = this.resolvePlayerByName(recipientName);
-            boolean isPermissionFormat = !recipientName.startsWith(GriefPrevention.BEDROCK_PREFIX) && recipientName.contains(".");
+            boolean isPermissionFormat = recipientName.contains(".");
             if (otherPlayer == null && !recipientName.equals("public") && !recipientName.equals("all") && !isPermissionFormat)
             {
                 GriefPrevention.sendMessage(player, TextMode.Err, Messages.PlayerNotFound2);
